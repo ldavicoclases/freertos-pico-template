@@ -7,17 +7,23 @@
 /* Example Application Tasks */
 void firstTask(void *pvParameters)
 {
+    gpio_init(26);
+    gpio_set_dir(26, GPIO_OUT);
     while (true) {
         printf("First task\n");
         vTaskDelay(pdMS_TO_TICKS(1000));
+        gpio_xor_mask(1ul << 26);
     }
 }
 
 void secondTask(void *pvParameters)
 {
+    gpio_init(27);
+    gpio_set_dir(27, GPIO_OUT);
     while (true) {
         printf("Second task\n");
         vTaskDelay(pdMS_TO_TICKS(950));
+        gpio_xor_mask(1ul << 27);
     }
 }
 /* End of Example Application Tasks */
